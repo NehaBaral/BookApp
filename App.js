@@ -1,20 +1,43 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+import BorrowedScreen from './src/screen/BorrowedScreen';
+import BookListScreen from './src/screen/BookListScreen';
+import BookDetailScreen from './src/screen/BookDetailScreen';
+import { createStackNavigator } from '@react-navigation/stack';
+
+const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+
+const HomeStackNavigation = () =>{
+  return(<Stack.Navigator>
+    <Stack.Screen 
+    name='Book List'
+    component={BookListScreen}
+    />
+
+    <Stack.Screen
+    name='Book Detail'
+    component={BookDetailScreen}
+    />
+  </Stack.Navigator>)
+}
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer >
+      <Tab.Navigator>
+        <Tab.Screen 
+        name='Home'
+        component={HomeStackNavigation}
+        options={{headerShown : false}}
+        />
+
+        <Tab.Screen 
+        name='Borrowed'
+        component={BorrowedScreen}
+        />
+      </Tab.Navigator>
+      
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
