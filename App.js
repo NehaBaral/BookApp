@@ -1,8 +1,8 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import BorrowedScreen from './src/screen/BorrowedScreen';
-import BookListScreen from './src/screen/BookListScreen';
-import BookDetailScreen from './src/screen/BookDetailScreen';
+import BorrowedBookScreen from './src/screen/borrowedBook';
+import BookListScreen from './src/screen/bookList';
+import BookDetailScreen from './src/screen/bookDetail';
 import { createStackNavigator } from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
@@ -11,12 +11,12 @@ const Tab = createBottomTabNavigator();
 const HomeStackNavigation = () =>{
   return(<Stack.Navigator>
     <Stack.Screen 
-    name='Book List'
+    name='BookList'
     component={BookListScreen}
     />
 
     <Stack.Screen
-    name='Book Detail'
+    name='BookDetail'
     component={BookDetailScreen}
     />
   </Stack.Navigator>)
@@ -34,7 +34,7 @@ export default function App() {
 
         <Tab.Screen 
         name='Borrowed'
-        component={BorrowedScreen}
+        component={BorrowedBookScreen}
         />
       </Tab.Navigator>
       
