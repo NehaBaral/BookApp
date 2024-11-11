@@ -32,13 +32,11 @@ export default StyleSheet.create({
         textAlign: 'center',
     },
     rating: {
-        width : '100%',
         fontSize: 16,
-        marginBottom: 24,
-        marginTop : 24,
         fontWeight : '600',
         color : 'purple',
-        textAlign : 'left'
+        textAlign : 'left',
+        marginTop : 2
     },
 
     borrowButton: {

@@ -18,7 +18,6 @@ export default function BookListScreen({ navigation }){
                 setError(null);
                 const bookList = await loadBookList();
                 setBooks(bookList);
-                console.log("Book==",books);
             }catch(error){
                 setError('Failed to load books')
             } finally{
@@ -32,7 +31,7 @@ export default function BookListScreen({ navigation }){
     const renderItem = ({ item })=>(
         <TouchableOpacity onPress={()=>itemClick(item)}>
             <View style = {styles.bookView}>
-                <Text style = {styles.bookName}>Name of book : {item.bookName}</Text>
+                <Text style = {styles.bookName}>Book : {item.bookName}</Text>
                 <Text style = {styles.authorName}>Author : {item.authorName}</Text>
             </View>
         </TouchableOpacity>
