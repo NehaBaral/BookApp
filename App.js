@@ -4,6 +4,7 @@ import BorrowedBookScreen from './src/screen/borrowedBook';
 import BookListScreen from './src/screen/bookList';
 import BookDetailScreen from './src/screen/bookDetail';
 import { createStackNavigator } from '@react-navigation/stack';
+import { BookProvider } from './src/BookProvider';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -24,6 +25,7 @@ const HomeStackNavigation = () =>{
 
 export default function App() {
   return (
+    <BookProvider>
     <NavigationContainer >
       <Tab.Navigator>
         <Tab.Screen 
@@ -39,5 +41,6 @@ export default function App() {
       </Tab.Navigator>
       
     </NavigationContainer>
+    </BookProvider>
   );
 }

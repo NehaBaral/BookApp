@@ -3,19 +3,18 @@ import { View, Text, Image, TouchableOpacity } from "react-native"
 import styles from "./styles";
 import { borrowOrReturnBook } from "../../cloudDatabase/write";
 import { useState } from "react";
+import { useBookContext } from "../../BookProvider";
 
 export default function BookDetailScreen({ route }) {
-
+    const { borrowBook} = useBookContext();
     const [bookDetail, setBookDetail] = useState(route.params.item);
 
 
     const handleBorrow = async() => {
         try{
-            const bookId = await borrowOrReturnBook(bookDetail.id,true);
-            setBookDetail(prevState => ({
-                ...prevState,
-                isBorrowed: true
-            }));
+          await borrowOrReturnBook(bookDetail.id,true);
+           borrowBook(bookDetail);
+           setBookDetail((prev) => ({ ...prev, isBorrowed: true }));
         }catch(error){
             console.log('Failed to load books');
         } finally{

@@ -1,12 +1,14 @@
 import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import styles from "./styles";
-import { loadBorrowedBooks } from "../../cloudDatabase/read";
-import { useState, useEffect, useRef } from "react";
+import { useRef } from "react";
 import { borrowOrReturnBook } from "../../cloudDatabase/write";
+import { useBookContext } from "../../BookProvider";
+import { loadBorrowedBooks } from "../../cloudDatabase/read";
+import { useState, useEffect } from "react";
 
 export default function BorrowedBookScreen() {
 
-    const [borrowedBooks, setBorrowedBooks] = useState([]);
+    const {borrowedBooks, returnBook, setBorrowedBooks} = useBookContext();
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -28,10 +30,11 @@ export default function BorrowedBookScreen() {
         getBorrowedBooks();
     }, []);
 
+
     const handleReturn = async(item) => {
         try{
-            const bookList = await borrowOrReturnBook(item.id,false);
-            setBorrowedBooks(books => books.filter(book=> book.id !== item.id))
+            await borrowOrReturnBook(item.id,false);
+            returnBook(item.id);
         }catch(error){
             console.log('Failed to return books',error);
         } finally{

@@ -2,15 +2,14 @@ import { useEffect, useRef, useState } from "react"
 import { View, Text, FlatList, ActivityIndicator, TouchableOpacity } from "react-native"
 import { loadBookList, sendBookList } from "../../cloudDatabase/read";
 import styles from "./styles";
+import { useBookContext } from "../../BookProvider";
 
 export default function BookListScreen({ navigation }){
-    const [books, setBooks] = useState([]);
+    const {books, setBooks} = useBookContext();
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
     const list = useRef(null);
-      
-   
 
     useEffect(()=>{
         async function getBooks(){
@@ -18,7 +17,8 @@ export default function BookListScreen({ navigation }){
                 setIsLoading(true);
                 setError(null);
                 const bookList = await loadBookList();
-                setBooks(bookList)
+                setBooks(bookList);
+                console.log("Book==",books);
             }catch(error){
                 setError('Failed to load books')
             } finally{
