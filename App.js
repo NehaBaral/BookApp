@@ -6,7 +6,6 @@ import BookDetailScreen from './src/screen/bookDetail';
 import { createStackNavigator } from '@react-navigation/stack';
 import { BookProvider } from './src/BookProvider';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -40,7 +39,7 @@ export default function App() {
               iconName = 'bookshelf'
               color = focused ? 'purple' : 'gray'
             } else {
-              iconName = 'book-multiple'
+              iconName = 'book'
               color = focused ? 'purple' : 'gray'
             }
             return <MaterialCommunityIcons name={iconName} size={24} color={color} />
@@ -53,7 +52,7 @@ export default function App() {
         />
 
         <Tab.Screen 
-        name='Borrowed'
+        name='Borrowed Book'
         component={BorrowedBookScreen}
         />
       </Tab.Navigator>

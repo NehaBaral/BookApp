@@ -58,7 +58,7 @@ export default function BorrowedBookScreen() {
                     onError={(error) => console.log("Image loading error:", error.nativeEvent.error)}
                 />
                 <View style = {styles.bookView1}>
-                    <Text style={styles.bookName}>Book : {item.bookName}</Text>
+                    <Text style={styles.bookName}>Name : {item.bookName}</Text>
                     <Text style={styles.authorName}>Author : {item.authorName}</Text>
                     <TouchableOpacity style={styles.returnButton} onPress={() => handleReturn(item)}>
                     <Text style={styles.returnButtonText}>Return This Book</Text>
